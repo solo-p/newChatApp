@@ -29,12 +29,22 @@
                     <div class="list-group" id="list-tab" role="tablist">
                         <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home"><h1>Chat Room</h1></a>
 
-                        <message
-                        v-for="value in chat.message">
+                        <ul class="list-group" v-chat-scroll>
 
-                            @{{ value }}
+                            <message
+                                    v-for="value in chat.message"
+                                    :key=value.index
 
-                        </message>
+                                    color='warning'
+                            >
+
+
+
+                                @{{ value }}
+
+                            </message>
+
+                        </ul>
                         <input class="form-control" type="text" placeholder="Type your Message here..." v-model='message' @keyup.enter='send'>
                     </div>
                 </div>

@@ -8,6 +8,8 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+
+//imported
 import Vue from 'vue';
 
 import VueChatScroll from 'vue-chat-scroll';
