@@ -20,6 +20,9 @@ import Vue from 'vue'
 
 import Toaster from 'v-toaster'
 
+// optional set default imeout, the default is 10000 (10 seconds).
+Vue.use(Toaster, {timeout: 5000})
+
 
 /**
  * The following block of code may be used to automatically register your
