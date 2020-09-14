@@ -16,9 +16,13 @@ import VueChatScroll from 'vue-chat-scroll';
 
 Vue.use(VueChatScroll);
 
+//for notifications
 import Vue from 'vue'
 
 import Toaster from 'v-toaster'
+
+// You need a specific loader for CSS files like https://github.com/webpack/css-loader
+import 'v-toaster/dist/v-toaster.css'
 
 // optional set default imeout, the default is 10000 (10 seconds).
 Vue.use(Toaster, {timeout: 5000})
@@ -168,6 +172,9 @@ const app = new Vue({
 
             this.numberOfUsers += 1;
 
+            // or custom timeout
+            this.$toaster.success(user.name+' is joined the chat room');
+
             //console.log(user.name);
 
         })
@@ -175,6 +182,8 @@ const app = new Vue({
         .leaving((user) => {
 
             this.numberOfUsers -= 1;
+
+            this.$toaster.warning(user.name+' is left the chat room');
 
             //console.log(user.name);
 
