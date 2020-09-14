@@ -24,6 +24,9 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
+        "laravel-echo": "^1.8.1",
+        "pusher-js": "^7.0.0",
+        "v-toaster": "^1.0.3",
         "vue-chat-scroll": "^1.4.0"
     }
 }

@@ -18,6 +18,66 @@
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
+        <style>
+
+            .list-group {
+                overflow: scroll;
+                height: 300px;
+
+            }
+            html, body {
+                background-color: #fff;
+                color: #636b6f;
+                font-family: 'Nunito', sans-serif;
+                font-weight: 200;
+                height: 100vh;
+                margin: 0;
+            }
+
+            .full-height {
+                height: 100vh;
+            }
+
+            .flex-center {
+                align-items: center;
+                display: flex;
+                justify-content: center;
+            }
+
+            .position-ref {
+                position: relative;
+            }
+
+            .top-right {
+                position: absolute;
+                right: 10px;
+                top: 18px;
+            }
+
+            .content {
+                text-align: center;
+            }
+
+            .title {
+                font-size: 84px;
+            }
+
+            .links > a {
+                color: #636b6f;
+                padding: 0 25px;
+                font-size: 13px;
+                font-weight: 600;
+                letter-spacing: .1rem;
+                text-decoration: none;
+                text-transform: uppercase;
+            }
+
+            .m-b-md {
+                margin-bottom: 30px;
+            }
+
+        </style>
+
     </head>
     <body>
         <div class="container">
@@ -26,16 +86,24 @@
 
             <div class="row" id="app">
                 <div class="col-4">
-                    <div class="list-group" id="list-tab" role="tablist">
-                        <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home"><h1>Chat Room</h1></a>
+                    <div class="" id="list-tab" role="tablist">
+                        <li class="list-group-item list-group-item-action active">
+                            <h1>Chat Room
+                                <span class="badge badge-pill badge-danger">@{{ numberOfUsers }}</span>
+                            </h1>
+                        </li>
+
+                        <div class="badge badge-pill badge-battery">@{{ typing }}</div>
 
                         <ul class="list-group" v-chat-scroll>
 
                             <message
-                                    v-for="value in chat.message"
+                                    v-for="value,index in chat.message"
                                     :key=value.index
 
-                                    color='warning'
+                                    :color=chat.color[index]
+                                    :user = chat.user[index]
+                                    :time = chat.time[index]
                             >
 
 

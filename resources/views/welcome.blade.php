@@ -71,7 +71,7 @@
             <div class="row">
                 <div class="col-md">
 
-                    Chat App
+                    <h1><a href="/chat">Chat App</a> </h1>
 
                 </div>
             </div>
