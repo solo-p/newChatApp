@@ -114,6 +114,11 @@
 
                         </ul>
                         <input class="form-control" type="text" placeholder="Type your Message here..." v-model='message' @keyup.enter='send'>
+
+                        <br>
+
+                        <a href="" class="btn btn-info btn-sm" @click.prevent='deleteSession'>Delete Chat</a>
+
                     </div>
                 </div>
 

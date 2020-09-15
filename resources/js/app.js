@@ -86,11 +86,14 @@ const app = new Vue({
     },
 
     methods:{
+
         send() {
+
             if(this.message.length != 0) {
 
                 //console.log(this.message.length);
                 this.chat.message.push(this.message);
+
                 this.chat.color.push('success');
 
                 this.chat.user.push('you');
@@ -101,16 +104,22 @@ const app = new Vue({
 
                 axios.post('/send', {
 
-                    message : this.message
+                    message : this.message,
+
+                    chat:this.chat
                 })
 
                 .then(response => {
+
                     console.log(response);
 
-                this.message = ''
+                    this.message= ''
                 })
+
                     .catch(error => {
+
                         console.log(error);
+
                     });
 
             }
@@ -122,6 +131,40 @@ const app = new Vue({
 
             return time.getHours()+':'+time.getMinutes()
 
+        },
+
+        getOldMessages(){
+
+            axios.post('/getOldMessage')
+
+                .then(response => {
+
+                   if (response.data != ''){
+
+                        this.chat= response.data;
+
+                    }
+
+                })
+
+                .catch(error => {
+
+                    console.log(error);
+
+                });
+
+
+        },
+
+        deleteSession(){
+
+            axios.post('/deleteSession')
+
+                .then(response=> this.$toaster.success('chat history is deleted'));
+
+
+
+
         }
 
     },
@@ -132,6 +175,7 @@ const app = new Vue({
         Echo.private('chat')
 
             .listen('ChatEvent', (e) => {
+
                 this.chat.message.push(e.message);
 
                 this.chat.user.push(e.user);
@@ -139,6 +183,23 @@ const app = new Vue({
                 this.chat.color.push('warning');
 
                 this.chat.time.push(this.getTime());
+
+                axios.post('/saveToSession', {
+
+                    chat : this.chat
+
+                })
+
+                    .then(response => {
+
+
+                    })
+
+                .catch(error => {
+
+                        console.log(error);
+
+                });
                 //console.log(e);
             })
 
