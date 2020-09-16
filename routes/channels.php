@@ -20,4 +20,6 @@ Broadcast::channel('chat', function ($user) {
 
     return ['name'=>$user->name];
 
+    
+
 });
